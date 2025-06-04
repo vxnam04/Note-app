@@ -1,0 +1,21 @@
+<div class="registerbox">
+  <h2 class="register__title">Đăng ký</h2>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="register__form">
+    <input formControlName="name" placeholder="Tên" class="register__input" />
+    <input
+      formControlName="email"
+      placeholder="Email"
+      class="register__input"
+    />
+    <input
+      formControlName="password"
+      type="password"
+      placeholder="Mật khẩu"
+      class="register__input"
+    />
+    <button type="submit" class="register__button">Đăng ký</button>
+    <a routerLink="/authentication/login" class="register__login-link"
+      >Đã có tài khoản?</a
+    >
+  </form>
+</div>

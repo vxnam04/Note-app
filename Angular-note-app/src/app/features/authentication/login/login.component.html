@@ -1,0 +1,16 @@
+<div class="loginbox">
+  <h2 class="login__title">Đăng nhập</h2>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="login__form">
+    <input formControlName="email" placeholder="Email" class="login__input" />
+    <input
+      formControlName="password"
+      type="password"
+      placeholder="Mật khẩu"
+      class="login__input"
+    />
+    <button type="submit" class="login__button">Đăng nhập</button>
+    <a routerLink="/authentication/register" class="login__register-link"
+      >Chưa có tài khoản?</a
+    >
+  </form>
+</div>

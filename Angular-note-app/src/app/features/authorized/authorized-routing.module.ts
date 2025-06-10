@@ -1,7 +1,9 @@
+import { AdminModule } from './admin/admin.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthorizedComponent } from './authorized.component';
+import { AuthGuard } from '../../guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -15,10 +17,17 @@ const routes: Routes = [
       },
       {
         path: 'application',
+        canActivate: [AuthGuard],
         loadChildren: () =>
           import('./modules/application/application.module').then(
             (m) => m.ApplicationModule
           ),
+      },
+      {
+        path: 'admin',
+        canActivate: [AuthGuard],
+        loadChildren: () =>
+          import('./admin/admin.module').then((m) => m.AdminModule),
       },
     ],
   },

@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NzEmptyModule } from 'ng-zorro-antd/empty';
 import { NzTreeModule } from 'ng-zorro-antd/tree';
 import { RouterModule } from '@angular/router';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   imports: [
@@ -16,6 +17,6 @@ import { RouterModule } from '@angular/router';
     NzTreeModule,
     RouterModule,
   ],
-  declarations: [AuthorizedComponent],
+  declarations: [AuthorizedComponent, AdminComponent],
 })
 export class AuthorizedModule {}

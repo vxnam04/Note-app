@@ -25,15 +25,26 @@ export class LoginComponent {
   onSubmit() {
     this.auth.login(this.form.value).subscribe({
       next: (res: any) => {
-        this.auth.saveToken(res.access_token);
-        console.log('login thành công, chuyển hướng đến /application/list');
-        this.router
-          .navigate(['/authorized/application/list'])
-          .then((success) => {
-            console.log('Chuyển hướng thành công?', success);
-          });
+        this.auth.saveToken(res);
+
+        const role = res.user.role;
+        console.log('Login thành công với vai trò:', role);
+
+        if (role === 'admin') {
+          this.router
+            .navigate(['/authorized/admin'])
+            .then((success) => console.log('Chuyển hướng admin:', success));
+        } else if (role === 'user') {
+          this.router
+            .navigate(['/authorized/application/list'])
+            .then((success) => console.log('Chuyển hướng user:', success));
+        } else {
+          alert('Vai trò không hợp lệ!');
+          this.router.navigate(['/authentication/login']);
+        }
       },
       error: (err) => {
+        console.error(err);
         alert('Sai tài khoản hoặc mật khẩu');
       },
     });

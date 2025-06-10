@@ -1,14 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-
 @Injectable({
   providedIn: 'root',
 })
 export class AuthservicesService {
   private baseUrl = 'http://laravel-note-app/api';
-  accessToken: any;
+
   constructor(private http: HttpClient, private router: Router) {}
+
   register(data: any) {
     return this.http.post(`${this.baseUrl}/register`, data);
   }
@@ -29,8 +29,9 @@ export class AuthservicesService {
     );
   }
 
-  saveToken(token: string) {
-    localStorage.setItem('access_token', token);
+  saveToken(response: any) {
+    localStorage.setItem('access_token', response.access_token);
+    localStorage.setItem('user_role', response.user.role);
   }
 
   getToken() {
@@ -43,6 +44,7 @@ export class AuthservicesService {
 
   logoutAndRedirect() {
     localStorage.removeItem('access_token');
+    localStorage.removeItem('user_role');
     this.router.navigate(['/login']);
   }
 }

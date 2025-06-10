@@ -27,14 +27,14 @@ export class LoginComponent {
       next: (res: any) => {
         this.auth.saveToken(res);
 
-        const role = res.user.role;
+        const role = res.user.role_id;
         console.log('Login thành công với vai trò:', role);
 
-        if (role === 'admin') {
+        if (role === 1) {
           this.router
             .navigate(['/authorized/admin'])
             .then((success) => console.log('Chuyển hướng admin:', success));
-        } else if (role === 'user') {
+        } else if (role === 2) {
           this.router
             .navigate(['/authorized/application/list'])
             .then((success) => console.log('Chuyển hướng user:', success));

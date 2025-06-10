@@ -30,8 +30,8 @@ export class AuthservicesService {
   }
 
   saveToken(response: any) {
-    localStorage.setItem('access_token', response.access_token);
-    localStorage.setItem('user_role', response.user.role);
+    localStorage.setItem('access_token', response.token); // dùng token từ response
+    localStorage.setItem('user_role', response.user?.role?.name || '');
   }
 
   getToken() {

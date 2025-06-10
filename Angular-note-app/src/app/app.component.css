@@ -4,6 +4,10 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+:host {
+  height: 100%; /* thêm dòng này */
+  width: 100%;
+}
 
 .menu-sidebar {
   position: relative;
@@ -74,9 +78,18 @@ nz-content {
   background: #fff;
   height: 100%;
 }
+
 html,
 body {
+  width: 100%;
   height: 100%;
   margin: 0;
   padding: 0;
+}
+.layout-wrapper,
+nz-layout,
+app-root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }

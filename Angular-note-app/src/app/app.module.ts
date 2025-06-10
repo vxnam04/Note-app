@@ -17,6 +17,7 @@ import { NZ_MODAL_DATA } from 'ng-zorro-antd/modal';
 import { PageNotFoundComponent } from './component/page-not-found/page-not-found.component';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { AuthInterceptor } from './auth.interceptor';
 registerLocaleData(vi);
 
 @NgModule({
@@ -33,10 +34,16 @@ registerLocaleData(vi);
     NzEmptyModule,
     NzIconModule,
     NzButtonModule,
+    NzLayoutModule,
   ],
   providers: [
     { provide: NZ_MODAL_DATA, useValue: {} },
     { provide: NZ_I18N, useValue: vi_VN },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
     DatePipe,
     AsyncPipe,
   ],
